@@ -1,11 +1,9 @@
 FROM debian:buster-slim
 RUN mkdir -p /usr/sbin/dpkg-split
 RUN mkdir -p /usr/sbin/dpkg-deb
-RUN chown -R dpkg-split:dpkg-split /usr/sbin
-RUN chown -R dpkg-deb:dpkg-deb /usr/sbin
-RUN apt-get update \
-  && apt-get install -y curl \
-  && rm -rf /var/lib/apt/lists/*
+RUN apt-get update 
+RUN apt-get install -y curl
+RUN rm -rf /var/lib/apt/lists/*
 ENTRYPOINT [ "curl" ]
 #
 #

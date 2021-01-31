@@ -9,3 +9,5 @@ jobs:
           version: 18.09.3
       - run: docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
       - run: docker buildx build --platform linux/arm/v7 --tag zmad5306/video-converter:buildx-latest .
+
+# https://www.docker.com/blog/multi-arch-build-what-about-circleci/

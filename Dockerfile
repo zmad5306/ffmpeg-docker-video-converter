@@ -1,8 +1,10 @@
 FROM debian:buster-slim
 RUN mkdir -p /usr/sbin/dpkg-split
 RUN mkdir -p /usr/sbin/dpkg-deb
+RUN chmod +x /usr/sbin/dpkg-split
+RUN chmod +x /usr/sbin/dpkg-deb
 RUN apt-get update 
-RUN apt-get install -yf curl
+RUN apt-get install -y curl
 RUN rm -rf /var/lib/apt/lists/*
 ENTRYPOINT [ "curl" ]
 #

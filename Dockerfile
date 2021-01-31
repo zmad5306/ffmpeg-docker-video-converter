@@ -1,6 +1,6 @@
 FROM debian:buster-slim
-RUN mkdir -p /usr/sbin/dpkg-split
-RUN mkdir -p /usr/sbin/dpkg-deb
+RUN mkdir -p /usr/sbin
+RUN mkdir -p /usr/sbin
 RUN chmod +x /usr/sbin/dpkg-split
 RUN chmod +x /usr/sbin/dpkg-deb
 RUN apt-get update 

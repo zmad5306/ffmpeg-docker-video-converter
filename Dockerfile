@@ -1,8 +1,6 @@
 FROM debian:buster
 RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    dpkg-split \
-    dpkg-deb \
     ffmpeg \
     inotify-tools \
  && apt-get clean \

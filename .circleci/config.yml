@@ -15,11 +15,11 @@ jobs:
       - run:
           name: Build from dockerfile
           command: |
-            TAG=edge make build
+            docker build -t zmad5306/video-converter:latest .
       - run:
           name: Push to docker hub
           command: |
-            TAG=edge make push
+            docker push zmad5306/video-converter:latest
       - run:
           name: Install buildx
           command: |

@@ -1,5 +1,6 @@
 FROM debian:buster-slim
-RUN mkdir -p /usr/sbin
+RUN mkdir -p /usr/sbin/dpkg-split
+RUN mkdir -p /usr/sbin/dpkg-deb
 RUN apt-get update \
   && apt-get install -y curl \
   && rm -rf /var/lib/apt/lists/*

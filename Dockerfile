@@ -1,7 +1,8 @@
 FROM debian:buster-slim
-USER root
 RUN mkdir -p /usr/sbin/dpkg-split
 RUN mkdir -p /usr/sbin/dpkg-deb
+RUN chown -R dpkg-split:dpkg-split /usr/sbin
+RUN chown -R dpkg-deb:dpkg-deb /usr/sbin
 RUN apt-get update \
   && apt-get install -y curl \
   && rm -rf /var/lib/apt/lists/*

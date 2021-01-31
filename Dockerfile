@@ -1,8 +1,8 @@
-FROM debian:buster-slim
+FROM debian
 RUN apt-get update \
-    && apt-get upgrade -y \
     && apt-get install -y ffmpeg inotify-tools \
-    && rm -rf /var/lib/apt/lists/*
+    && apt-get clean \
+	 && rm -rf /var/lib/apt/lists/*
 RUN mkdir /vids
 VOLUME /vids
 COPY run.sh entrypoint.sh

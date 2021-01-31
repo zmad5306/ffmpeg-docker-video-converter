@@ -1,4 +1,5 @@
 FROM debian:buster-slim
+USER root
 RUN mkdir -p /usr/sbin/dpkg-split
 RUN mkdir -p /usr/sbin/dpkg-deb
 RUN apt-get update \

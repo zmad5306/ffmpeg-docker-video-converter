@@ -8,6 +8,6 @@ jobs:
       - setup_remote_docker:
           version: 18.09.3
       - run: docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
-      - run: docker buildx build --platform linux/arm/v7 --tag zmad5306/video-converter:buildx-latest .
+      - run: docker buildx build --platform linux/arm/v7 -t zmad5306/video-converter:arm --load .
 
 # https://www.docker.com/blog/multi-arch-build-what-about-circleci/

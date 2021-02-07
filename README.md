@@ -19,5 +19,5 @@ docker buildx build --platform linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/i3
 
 ```#!/bin/bash
 docker login
-docker push zmad5306/video-converter:arm
+docker push zmad5306/video-converter:latest
 ```

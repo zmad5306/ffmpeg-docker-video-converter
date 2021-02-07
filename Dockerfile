@@ -1,8 +1,5 @@
-FROM ubuntu
-RUN apt-get update \
-    && apt-get install -y ffmpeg inotify-tools \
-    && apt-get clean \
-	 && rm -rf /var/lib/apt/lists/*
+FROM alpine:latest
+RUN apk --update add ffmpeg inotify-tools
 RUN mkdir /vids
 VOLUME /vids
 COPY run.sh entrypoint.sh

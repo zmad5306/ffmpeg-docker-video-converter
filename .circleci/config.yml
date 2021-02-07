@@ -1,16 +1,4 @@
 version: 2
-
-workflows:
-  version: 2
-  build:
-    when: equal: [ master, << pipeline.git.branch >> ]
-    jobs:
-      - build
-  build-edge:
-    when: not: [ master, << pipeline.git.branch >> ]
-    jobs:
-      - build-edge
-
 jobs:
   build:
     docker:
@@ -21,14 +9,3 @@ jobs:
           version: 18.09.3
       - run: docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
       - run: docker buildx build --platform linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/i386,linux/amd64 -t zmad5306/video-converter:latest --push .
-  build-edge:
-    docker:
-    - image: jdrouet/docker-with-buildx:stable
-    steps:
-      - checkout
-      - setup_remote_docker:
-          version: 18.09.3
-      - run: docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
-      - run: docker buildx build --platform linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/i386,linux/amd64 -t zmad5306/video-converter:edge --push .
-
-# https://www.docker.com/blog/multi-arch-build-what-about-circleci/

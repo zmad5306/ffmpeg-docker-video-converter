@@ -1,4 +1,4 @@
-FROM aarch64/alpine:edge
+FROM alpine:latest
 RUN apk --update add ffmpeg inotify-tools
 RUN mkdir /vids
 VOLUME /vids

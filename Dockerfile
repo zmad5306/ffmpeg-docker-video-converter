@@ -1,10 +1,5 @@
-FROM debian:buster
-RUN apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    ffmpeg \
-    inotify-tools \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
+FROM aarch64/alpine:edge
+RUN apk --update add ffmpeg inotify-tools
 RUN mkdir /vids
 VOLUME /vids
 COPY run.sh entrypoint.sh

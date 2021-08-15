@@ -5,8 +5,6 @@ jobs:
     - image: jdrouet/docker-with-buildx:stable
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 18.09.3
       - run:
           name: "List dir"
           command: ls -l
@@ -19,6 +17,8 @@ jobs:
       - run: 
           name: "Print BASH_ENV"
           command: echo ${BASH_ENV}
+      - setup_remote_docker:
+          version: 18.09.3
       - run: 
           name: "Docker login"
           command: docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"

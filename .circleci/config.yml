@@ -12,7 +12,7 @@ jobs:
           command: ls -l
       - run: 
           name: "Read version from VERSION file"
-          command: echo export version="`cat VERSION`" >> $BASH_ENV
+          command: echo export version=\"`cat VERSION`\" >> $BASH_ENV
       - run: 
           name: "Print version"
           command: echo ${version}

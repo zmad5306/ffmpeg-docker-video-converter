@@ -13,22 +13,8 @@ jobs: # basic units of work in a run
       # Run a step to setup an environment variable
       # Redirect MY_ENV_VAR into $BASH_ENV
       - run:
-          name: "Setup custom environment variables"
-          command: echo 'export MY_VERSION="{cat VERSION}"' >> $BASH_ENV
-      - run: # print the name of the branch we're on
-          name: "What branch am I on?"
-          command: echo ${CIRCLE_BRANCH}
-      # Run another step, the same as above; note that you can
-      # invoke environment variable without curly braces.
+          name: "Setup version environment variables"
+          command: echo 'export MY_VERSION="1.0.0"' >> $BASH_ENV
       - run:
-          name: "What branch am I on now?"
-          command: echo $CIRCLE_BRANCH
-      - run:
-          name: "What was my custom environment variable?"
+          name: "What was my version?"
           command: echo ${MY_VERSION}
-      - run:
-          name: "Print an env var stored in the Project"
-          command: echo ${PROJECT_ENV_VAR}
-      - run:
-          name: "Print an env var stored in a Context"
-          command: echo ${CONTEXT_ENV_VAR}

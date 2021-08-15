@@ -1,9 +1,10 @@
 version: 2
 jobs:
   build:
-    - environment: MY_VERSION: 1.0.0
     docker:
     - image: jdrouet/docker-with-buildx:stable
+    environment: 
+      MY_VERSION: 1.0.0
     steps:
       - checkout
       - run:

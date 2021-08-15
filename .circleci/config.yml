@@ -12,10 +12,10 @@ jobs:
           command: ls -l
       - run: 
           name: "Read version from VERSION file"
-          command: echo 'export version="1.0.0"' >> $BASH_ENV
+          command: echo 'export MY_VERSION="1.0.0"' >> $BASH_ENV
       - run: 
           name: "Print version"
-          command: echo ${version}
+          command: echo ${MY_VERSION}
       - run: 
           name: "Print BASH_ENV"
           command: echo ${BASH_ENV}
@@ -24,4 +24,4 @@ jobs:
           command: docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
       - run: 
           name: "Docker build & push, with buildx"
-          command: docker buildx build --platform linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/i386,linux/amd64 -t zmad5306/video-converter:latest -t zmad5306/video-converter:${version} --push .
+          command: docker buildx build --platform linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/i386,linux/amd64 -t zmad5306/video-converter:latest -t zmad5306/video-converter:${MY_VERSION} --push .

@@ -1,10 +1,17 @@
 version: 2.1
-jobs:
+
+jobs: # basic units of work in a run
   build:
-    docker:
-    - image: jdrouet/docker-with-buildx:stable
-    steps:
-      - checkout
+    docker: # use the Docker executor
+      # CircleCI node images available at: https://hub.docker.com/r/circleci/node/
+      - image: circleci/node:14.17-browsers
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps: # steps that comprise the `build` job
+      - checkout # check out source code to working directory
+      # Run a step to setup an environment variable
+      # Redirect MY_ENV_VAR into $BASH_ENV
       - run:
           name: "Setup custom environment variables"
           command: echo 'export MY_ENV_VAR="FOO"' >> $BASH_ENV
@@ -25,31 +32,9 @@ jobs:
       - run:
           name: "Print an env var stored in a Context"
           command: echo ${CONTEXT_ENV_VAR}
-    #   - run:
-    #       name: "List dir"
-    #       command: ls -l
-    #   - run: 
-    #       name: "Read version from VERSION file"
-    #       command: echo 'export MY_VERSION="1.0.0"' >> $BASH_ENV
-    #   - run: 
-    #       name: "Print version"
-    #       command: echo ${MY_VERSION}
-    #     - run: 
-    #       name: "Print version 2"
-    #       command: echo $MY_VERSION
-    #   - run: 
-    #       name: "Print BASH_ENV"
-    #       command: echo ${BASH_ENV}
-      - setup_remote_docker:
-          version: 18.09.3
-      - run: 
-          name: "Docker login"
-          command: docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
-      - run: 
-          name: "Docker build & push, with buildx"
-          command: docker buildx build --platform linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/i386,linux/amd64 -t zmad5306/video-converter:latest -t zmad5306/video-converter:${MY_VERSION} --push .
-# workflows: # a single workflow with a single job called build
-#   build:
-#     jobs:
-#       - build:
-#           context: Testing-Env-Vars
+
+workflows: # a single workflow with a single job called build
+  build:
+    jobs:
+      - build:
+          context: Testing-Env-Vars

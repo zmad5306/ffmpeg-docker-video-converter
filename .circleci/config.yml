@@ -8,9 +8,6 @@ jobs:
      - setup_remote_docker:
         version: 18.09.3
      - run: 
-         name: "Docker login"
-         comand: docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
-     - run: 
          name: "Docker build"
          command: docker buildx build --platform linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/i386,linux/amd64 .
   build_and_publish:

@@ -7,7 +7,18 @@ jobs:
       - checkout
       - setup_remote_docker:
           version: 18.09.3
-      - run: echo export version="`cat VERSION`" >> $BASH_ENV
-      - run: echo ${version}
-      - run: docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
-      - run: docker buildx build --platform linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/i386,linux/amd64 -t zmad5306/video-converter:latest -t zmad5306/video-converter:${version} --push .
+      - run:
+          name: "List dir"
+          command: ls -l
+      - run: 
+          name: "Read version from VERSION file"
+          command: echo export version="`cat VERSION`" >> $BASH_ENV
+      - run: 
+          name: "Print version"
+          command: echo ${version}
+      - run: 
+          name: "Docker login"
+          command: docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
+      - run: 
+          name: "Docker build & push, with buildx"
+          command: docker buildx build --platform linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/i386,linux/amd64 -t zmad5306/video-converter:latest -t zmad5306/video-converter:${version} --push .

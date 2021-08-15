@@ -3,6 +3,7 @@ jobs:
   build:
     docker:
     - image: jdrouet/docker-with-buildx:stable
+    - environment: MY_VERSION: 1.0.0
     steps:
       - checkout
       - run:
@@ -14,6 +15,9 @@ jobs:
       - run: 
           name: "Print version"
           command: echo ${MY_VERSION}
+        - run: 
+          name: "Print version 2"
+          command: echo $MY_VERSION
       - run: 
           name: "Print BASH_ENV"
           command: echo ${BASH_ENV}

@@ -48,3 +48,8 @@ jobs:
       - run: 
           name: "Docker build & push, with buildx"
           command: docker buildx build --platform linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/i386,linux/amd64 -t zmad5306/video-converter:latest -t zmad5306/video-converter:${MY_VERSION} --push .
+workflows: # a single workflow with a single job called build
+  build:
+    jobs:
+      - build:
+          context: Testing-Env-Vars

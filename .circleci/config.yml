@@ -17,6 +17,9 @@ jobs:
           name: "Print version"
           command: echo ${version}
       - run: 
+          name: "Print BASH_ENV"
+          command: echo ${BASH_ENV}
+      - run: 
           name: "Docker login"
           command: docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
       - run: 
